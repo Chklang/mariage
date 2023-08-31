@@ -1,68 +1,100 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8" />
-    <title>Invitation</title>
-    <link rel="stylesheet" href="style.css" />
-    <style>
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        text-align: center;
-        background-color: black;
-        overflow: hidden;
-      }
-      video {
-        margin: 0;
-        height: 100%;
-        z-index: 50;
-        cursor: pointer;
-      }
-      #overlay {
-        z-index: 100;
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        display: flex;
-      }
-      #overlay > button {
-        margin: auto;
-        height: 50px;
-        width: 150px;
-        border-radius: 100px;
-        z-index: 150;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="overlay">
-      <button onclick="start()">Voir la vidéo</button>
-    </div>
-    <video id="video1" onclick="openForm()">
-      <source src="video.1.webm" type="video/webm" />
-    </video>
-    <video loop id="video2" onclick="openForm()" style="display: none">
-      <source src="video.2.webm" type="video/webm" />
-    </video>
-  </body>
-  <script>
 
-    function start () {
-        document.getElementById("video1").addEventListener('ended', endIntro);
-        document.getElementById("overlay").remove();
-        document.getElementById("video1").play();
+<head>
+  <meta charset="utf-8" />
+  <title>Invitation</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      text-align: center;
+      background-color: black;
+      overflow: hidden;
     }
-    function openForm() {
-        location.href = "https://forms.gle/GAkudUeaAHoPh8F6A";
+
+    video {
+      margin: 0;
+      height: 100%;
+      z-index: 50;
+      cursor: pointer;
     }
-    function endIntro() {
-        console.log('end');
-        document.getElementById("video2").play();
-        document.getElementById("video1").style.display="none";
-        document.getElementById("video2").style.display="";
+
+    #overlay {
+      z-index: 100;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      display: flex;
     }
-  </script>
+
+    #overlay>button {
+      margin: auto;
+      height: 50px;
+      width: 150px;
+      border-radius: 100px;
+      z-index: 150;
+    }
+
+    #coeur {
+      position: absolute;
+      bottom: 0px;
+      z-index: 200;
+      margin: auto;
+      left: 0;
+      right: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="overlay">
+    <button onclick="start()">Voir la vidéo</button>
+  </div>
+  <video id="video1" onclick="openForm()">
+    <source src="video.1.webm" type="video/webm" />
+  </video>
+  <video loop id="video2" onclick="openForm()" style="display: none">
+    <source src="video.2.webm" type="video/webm" />
+  </video>
+  <img id="coeur" src="coeur.gif" style="display: none" />
+  <audio id="audio1" src="song.1.mp3"></audio>
+  <audio id="audio2" src="song.2a.mp3"></audio>
+  <audio id="audio3" src="song.2b.mp3"></audio>
+</body>
+<script>
+
+  function start() {
+    document.getElementById("video1").addEventListener('ended', endIntroVideo);
+    document.getElementById("audio1").addEventListener('ended', endIntroAudio);
+    document.getElementById("audio2").addEventListener('ended', endIntroAudio2);
+    document.getElementById("audio3").addEventListener('ended', endIntroAudio3);
+    document.getElementById("overlay").remove();
+    document.getElementById("video1").play();
+    document.getElementById("audio1").play();
+  }
+  function openForm() {
+    window.open("https://forms.gle/GAkudUeaAHoPh8F6A");
+  }
+  function endIntroVideo() {
+    document.getElementById("video2").play();
+    document.getElementById("video1").style.display = "none";
+    document.getElementById("video2").style.display = "";
+  }
+  function endIntroAudio() {
+    document.getElementById("coeur").style.display = "";
+    document.getElementById("audio2").play();
+  }
+  function endIntroAudio2() {
+    document.getElementById("audio3").play();
+  }
+  function endIntroAudio3() {
+    document.getElementById("audio2").play();
+  }
+</script>
+
 </html>
