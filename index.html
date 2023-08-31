@@ -100,6 +100,7 @@
     video2CanPlayed = true;
     if (video2MustBePlayed) {
       document.getElementById("video2").play();
+      document.getElementById("video2").style.display = "";
     }
   });
   document.getElementById("audio1").addEventListener('canplaythrough', function () {
@@ -149,9 +150,9 @@
     video2MustBePlayed = true;
     if (video2CanPlayed) {
       document.getElementById("video2").play();
+      document.getElementById("video2").style.display = "";
     }
     document.getElementById("video1").style.display = "none";
-    document.getElementById("video2").style.display = "";
   }
   function endIntroAudio() {
     document.getElementById("coeur").style.display = "";
