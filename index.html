@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Invitation</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        text-align: center;
+        background-color: black;
+        overflow: hidden;
+      }
+      video {
+        margin: 0;
+        height: 100%;
+        z-index: 50;
+        cursor: pointer;
+      }
+      #overlay {
+        z-index: 100;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        display: flex;
+      }
+      #overlay > button {
+        margin: auto;
+        height: 50px;
+        width: 150px;
+        border-radius: 100px;
+        z-index: 150;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="overlay">
+      <button onclick="start()">Voir la vidéo</button>
+    </div>
+    <video id="video1" onclick="openForm()">
+      <source src="video.1.webm" type="video/webm" />
+    </video>
+    <video loop id="video2" onclick="openForm()" style="display: none">
+      <source src="video.2.webm" type="video/webm" />
+    </video>
+  </body>
+  <script>
+
+    function start () {
+        document.getElementById("video1").addEventListener('ended', endIntro);
+        document.getElementById("overlay").remove();
+        document.getElementById("video1").play();
+    }
+    function openForm() {
+        location.href = "https://forms.gle/GAkudUeaAHoPh8F6A";
+    }
+    function endIntro() {
+        console.log('end');
+        document.getElementById("video2").play();
+        document.getElementById("video1").style.display="none";
+        document.getElementById("video2").style.display="";
+    }
+  </script>
+</html>
